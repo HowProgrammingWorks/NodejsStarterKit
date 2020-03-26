@@ -10,3 +10,5 @@
 - Database access layer
 - Client persistent sessions
 - How to write API tests and domain model tests
+- Graceful shutdown and application reload
+- Logging with rotation
