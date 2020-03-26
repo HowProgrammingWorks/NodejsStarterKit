@@ -6,5 +6,4 @@ const cwd = process.cwd();
 const application = new Application(cwd);
 application.on('started', () => {
   console.log('Application loaded');
-  console.log(application);
 });
