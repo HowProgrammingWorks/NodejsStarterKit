@@ -1,10 +1,10 @@
 'use strict';
 
 const Application = require('./lib/application.js');
+const { Rect } = require('./domain/rect.js');
 
-const cwd = process.cwd();
-const application = new Application(cwd);
-global.application = application;
+const domain = { Rect };
+const application = new Application({ domain });
 
 application.on('started', () => {
   application.logger.log('Application loaded');
