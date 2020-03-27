@@ -1,6 +1,6 @@
 'use strict';
 
-const { Point } = application.domain;
+const { Point } = require('./point.js');
 
 class Rect {
   constructor(x1, y1, x2, y2) {
@@ -11,4 +11,4 @@ class Rect {
   }
 }
 
-application.domain.Rect = Rect;
+module.exports = { Rect };

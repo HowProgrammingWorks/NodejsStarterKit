@@ -7,4 +7,4 @@ class Point {
   }
 }
 
-application.domain.Point = Point;
+module.exports = { Point };
