@@ -9,3 +9,11 @@ const application = new Application({ domain });
 application.on('started', () => {
   application.logger.log('Application loaded');
 });
+
+process.on('SIGINT', async () => {
+  console.log();
+  application.logger.log('Graceful shutdown');
+  await application.shutdown();
+  application.logger.log('Bye');
+  process.exit(0);
+});
