@@ -9,7 +9,7 @@ const rotate = (point, angle) => {
 };
 
 module.exports = async (name, angle) => {
-  const shape = application.db.read('Shape', name);
+  const shape = application.state.get(name);
   if (!shape) return 'Shape is not found';
   for (const key in shape) {
     const point = shape[key];

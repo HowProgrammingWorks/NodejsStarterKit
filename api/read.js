@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = async name => {
-  const shape = application.db.read('Shape', name);
+  const shape = application.state.get(name);
   if (!shape) return 'Shape is not found';
   return shape;
 };
