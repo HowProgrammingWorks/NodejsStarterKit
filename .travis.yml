@@ -1,5 +1,10 @@
 language: node_js
 node_js:
   - 12
+services:
+  - postgresql
+before_script:
+  - psql -f install.sql -U postgres
+  - PGPASSWORD=marcus psql -d application -f database.sql -U marcus
 script:
   - npm test
