@@ -4,7 +4,7 @@ node_js:
 services:
   - postgresql
 before_script:
-  - psql -f install.sql -U postgres
-  - PGPASSWORD=marcus psql -d application -f database.sql -U marcus
+  - psql -f db/install.sql -U postgres
+  - PGPASSWORD=marcus psql -d application -f db/database.sql -U marcus
 script:
   - npm test
