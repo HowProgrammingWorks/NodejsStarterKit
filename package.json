@@ -32,8 +32,7 @@
   "main": "main.js",
   "scripts": {
     "test": "npm run -s lint",
-    "lint": "eslint .",
-    "postinstall": "node install.js"
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",
