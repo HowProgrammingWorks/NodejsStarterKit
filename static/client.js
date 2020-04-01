@@ -23,21 +23,12 @@ const buildAPI = methods => {
   return api;
 };
 
-const api = buildAPI(['rect', 'move', 'rotate', 'read', 'render', 'resize']);
-
-const show = async () => {
-  const svg = await api.render('Rect1');
-  const output = document.getElementById('output');
-  output.innerHTML = svg;
-};
+const api = buildAPI(['registerUser', 'listUsers']);
 
 const scenario = async () => {
-  await api.rect('Rect1', -10, 10, 10, -10);
-  await api.move('Rect1', 5, 5);
-  await api.rotate('Rect1', 5);
-  const data = await api.read('Rect1');
-  console.dir({ data });
-  await show();
+  const users = await api.listUsers();
+  const output = document.getElementById('output');
+  output.innerHTML = 'HTTP GET /api/listUsers<br>' + JSON.stringify(users.data);
 };
 
 scenario();
