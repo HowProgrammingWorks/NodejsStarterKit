@@ -5,7 +5,7 @@ services:
   - postgresql
 before_script:
   - psql -f db/install.sql -U postgres
-  - PGPASSWORD=marcus psql -d application -f db/database.sql -U marcus
+  - PGPASSWORD=marcus psql -d application -f db/structure.sql -U marcus
   - PGPASSWORD=marcus psql -d application -f db/data.sql -U marcus
 script:
   - npm test
