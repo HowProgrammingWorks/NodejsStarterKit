@@ -11,6 +11,7 @@ application.on('started', () => {
 });
 
 process.on('SIGINT', async () => {
+  if (application.finalization) return;
   console.log();
   application.logger.log('Graceful shutdown');
   await application.shutdown();
