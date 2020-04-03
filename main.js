@@ -18,3 +18,10 @@ process.on('SIGINT', async () => {
   application.logger.log('Bye');
   process.exit(0);
 });
+
+const logError = err => {
+  application.logger.error(err.stack);
+};
+
+process.on('warning', logError);
+process.on('unhandledRejection', logError);
