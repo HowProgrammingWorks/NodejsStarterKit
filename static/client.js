@@ -23,7 +23,7 @@ const buildAPI = methods => {
   return api;
 };
 
-const api = buildAPI(['registerUser', 'listUsers', 'deleteUser']);
+const api = buildAPI(['registerUser', 'listUsers', 'deleteUser', 'updateUser']);
 
 const scenario = async () => {
   const users = await api.listUsers();
