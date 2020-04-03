@@ -23,5 +23,6 @@ const logError = err => {
   application.logger.error(err.stack);
 };
 
+process.on('uncaughtException', logError);
 process.on('warning', logError);
 process.on('unhandledRejection', logError);
