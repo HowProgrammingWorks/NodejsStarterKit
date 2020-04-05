@@ -23,9 +23,16 @@ const buildAPI = methods => {
   return api;
 };
 
-const api = buildAPI(['registerUser', 'listUsers', 'deleteUser', 'updateUser']);
+const api = buildAPI([
+  'registerUser',
+  'listUsers',
+  'deleteUser',
+  'updateUser',
+  'signIn',
+]);
 
 const scenario = async () => {
+  await api.signIn('marcus', 'marcus');
   const users = await api.listUsers();
   const output = document.getElementById('output');
   output.innerHTML = 'HTTP GET /api/listUsers<br>' + JSON.stringify(users.data);
