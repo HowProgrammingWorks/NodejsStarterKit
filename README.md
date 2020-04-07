@@ -1,16 +1,19 @@
 # Node.js Starter Kit
 
-- Application configuration
 - Serve API with routing, HTTP(S), WS(S)
-- Serve static files with memory cache
-- Server code live reload with filesystem watch
+- Server code live reload with file system watch
+- Graceful shutdown and application reload
+- Minimum code size and dependencies
 - Code sandboxing for security and context isolation
-- Multithreading for CPU utilization and isolation
+- Multi-threading for CPU utilization and isolation
 - Serve multiple ports in threads
+- Serve static files with memory cache
 - Load balancing for scaling
+- Application configuration
+- Simple logger and redirection from console
 - Database access layer (Postgresql)
 - Client persistent sessions
-- How to write API tests and domain model tests
-- Graceful shutdown and application reload
-- Simple logger
-- Load SSL certificates
+- Unit-tests and API tests example
+- Request queue timeout and size
+- API parallel execution concurrency
+- API method execution timeout
