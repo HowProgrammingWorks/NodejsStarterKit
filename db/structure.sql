@@ -40,3 +40,24 @@ ALTER TABLE Session ADD CONSTRAINT pkSession PRIMARY KEY (Id);
 CREATE UNIQUE INDEX akSession ON Session (Token);
 
 ALTER TABLE Session ADD CONSTRAINT fkSessionUserId FOREIGN KEY (UserId) REFERENCES Session (Id) ON DELETE CASCADE;
+
+CREATE TABLE Country (
+  Id    serial,
+  Name  varchar(64) NOT NULL
+);
+
+ALTER TABLE Country ADD CONSTRAINT pkCountry PRIMARY KEY (Id);
+
+CREATE UNIQUE INDEX akCountry ON Country (Name);
+
+CREATE TABLE City (
+  Id         serial,
+  Name       varchar(64) NOT NULL,
+  CountryId  integer NOT NULL
+);
+
+ALTER TABLE City ADD CONSTRAINT pkCity PRIMARY KEY (Id);
+
+CREATE UNIQUE INDEX akCity ON City (Name);
+
+ALTER TABLE City ADD CONSTRAINT fkCityCountryId FOREIGN KEY (CountryId) REFERENCES Country (Id) ON DELETE CASCADE;
