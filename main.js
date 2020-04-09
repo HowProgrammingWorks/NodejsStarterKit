@@ -1,8 +1,10 @@
 'use strict';
 
+const worker = require('worker_threads');
+
 const Application = require('./lib/application.js');
 
-const application = new Application();
+const application = new Application(worker);
 
 application.on('started', () => {
   application.logger.log('Application loaded');
