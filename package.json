@@ -31,7 +31,7 @@
   ],
   "main": "main.js",
   "scripts": {
-    "test": "npm run -s lint",
+    "test": "npm run -s lint && node ./test/all.js",
     "lint": "eslint ."
   },
   "repository": {
