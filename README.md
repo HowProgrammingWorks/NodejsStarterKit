@@ -1,5 +1,17 @@
 # Node.js Starter Kit
 
+## Concept
+
+You can begin development from this starter kit but it is not for production
+usage. After your application will be ready you can easely run it in
+Metaserverless cloud, an open source cloud platform based on Metarhia technology
+stack and Node.js. The purpose of this starter kit is to show simplicity of
+basic concepts, give structure and architecture example. All parts of this
+implementation are optimized for readability and for understanding, but not for
+performance and scalability. So it is good for development and better
+understanding. However, for deployment you need to take one of the
+implementations proposed in this document. Links will be available soon.
+
 ## Feature list
 
 - Serve API with routing, HTTP(S), WS(S)
