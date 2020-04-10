@@ -2,8 +2,16 @@
 
 const { Worker } = require('worker_threads');
 
-const worker = new Worker('./worker.js');
+const config = require('./config/server.js');
+
+const workers = [];
+for (let i = 0; i < config.ports.length; i++) {
+  const worker = new Worker('./worker.js');
+  workers.push(worker);
+}
 
 process.on('SIGINT', async () => {
-  worker.postMessage({ name: 'stop' });
+  for (const worker of workers) {
+    worker.postMessage({ name: 'stop' });
+  }
 });
