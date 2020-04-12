@@ -3,7 +3,7 @@
 const buildAPI = methods => {
   const api = {};
   for (const method of methods) {
-    api[method] = (...args) => new Promise((resolve, reject) => {
+    api[method] = (args = {}) => new Promise((resolve, reject) => {
       const url = `/api/${method}`;
       console.log(url, args);
       fetch(url, {
@@ -29,7 +29,7 @@ const api = buildAPI([
 ]);
 
 const scenario = async () => {
-  await api.signIn('marcus', 'marcus');
+  await api.signIn({ login: 'marcus', password: 'marcus' });
   const users = await api.listUsers();
   const output = document.getElementById('output');
   output.innerHTML = 'HTTP GET /api/listUsers<br>' + JSON.stringify(users.data);

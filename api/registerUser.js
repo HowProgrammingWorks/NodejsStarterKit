@@ -1,4 +1,4 @@
-async (login, password, fullName) => {
+async ({ login, password, fullName }) => {
   const user = {
     Login: login,
     Password: password,

@@ -1,4 +1,4 @@
-async (login, password) => {
+async ({ login, password }) => {
   const where = {
     Login: login,
     Password: password,
