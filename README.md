@@ -36,6 +36,7 @@ implementations proposed in this document. Links will be available soon.
 
 - You need node.js v12.5.0 or later
 - Fork and clone this repository (optionally subscribe to repo changes)
+- Run `npm i` to install dependencies and generate RSA certificate
 - Remove unneeded dependencies if your project doesn't require them
 - Add your license to `LICENSE` file but don't remove starter kit license
 - Start your project modifying this starter kit
