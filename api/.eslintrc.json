@@ -8,6 +8,7 @@
   "globals": {
     "BigInt": true,
     "application": true,
-    "context": true
+    "context": true,
+    "api": true
   }
 }
