@@ -11,6 +11,7 @@ for (let i = 0; i < config.ports.length; i++) {
 }
 
 process.on('SIGINT', async () => {
+  console.log();
   for (const worker of workers) {
     worker.postMessage({ name: 'stop' });
   }

@@ -13,8 +13,7 @@ application.on('started', () => {
 worker.parentPort.on('message', async message => {
   if (message.name === 'stop') {
     if (application.finalization) return;
-    console.log();
-    application.logger.log('Graceful shutdown');
+    application.logger.log(`Graceful shutdown in worker ${worker.threadId}`);
     await application.shutdown();
     process.exit(0);
   }
