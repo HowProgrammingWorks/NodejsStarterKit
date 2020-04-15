@@ -29,7 +29,7 @@
     "thread",
     "worker"
   ],
-  "main": "main.js",
+  "main": "server.js",
   "scripts": {
     "test": "npm run -s lint && node test/all.js",
     "lint": "eslint .",
