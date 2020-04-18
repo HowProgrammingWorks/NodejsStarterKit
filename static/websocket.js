@@ -18,17 +18,19 @@ const buildAPI = methods => {
 
 const api = buildAPI([
   'registerUser',
-  'listUsers',
+  'users',
   'deleteUser',
   'updateUser',
   'signIn',
+  'citiesByCountry',
+  'countries',
 ]);
 
 const scenario = async () => {
   await api.signIn({ login: 'marcus', password: 'marcus' });
-  const users = await api.listUsers();
+  const users = await api.users();
   const output = document.getElementById('output');
-  output.innerHTML = 'HTTP GET /api/listUsers<br>' + JSON.stringify(users.data);
+  output.innerHTML = 'HTTP GET /api/users<br>' + JSON.stringify(users.data);
 };
 
 socket.onopen = scenario;
