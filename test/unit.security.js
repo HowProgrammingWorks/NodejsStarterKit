@@ -2,19 +2,19 @@
 
 const assert = require('assert').strict;
 
-const Security = require('../lib/security.js');
+const security = require('../lib/security.js');
 
-assert(Security);
+assert(security);
 
 const password = 'correct horse battery staple';
 const wrongPassword = 'password';
 
-Security.hashPassword(password).then(hash => {
+security.hashPassword(password).then(hash => {
   assert(hash);
   assert.equal(typeof hash, 'string');
   return Promise.all([
-    Security.validatePassword(password, hash),
-    Security.validatePassword(wrongPassword, hash),
+    security.validatePassword(password, hash),
+    security.validatePassword(wrongPassword, hash),
   ]);
 }).then(result => {
   assert.deepEqual(result, [true, false]);

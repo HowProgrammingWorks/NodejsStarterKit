@@ -3,7 +3,7 @@ async ({ login, password }) => {
     'SystemUser', ['Password'], { login }
   );
   const hash = user && user.Password || api.security.defaultHash;
-  const verified = await api.Security.validatePassword(password, hash);
+  const verified = await api.security.validatePassword(password, hash);
   if (!user || !verified) throw new Error('Incorrect login or password');
   console.log(`Logged user: ${login}`);
   return { result: 'success' };
