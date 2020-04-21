@@ -1,7 +1,7 @@
 CREATE TABLE SystemUser (
   Id        serial,
   Login     varchar(64) NOT NULL,
-  Password  varchar(64) NOT NULL,
+  Password  varchar(255) NOT NULL,
   FullName  varchar(255)
 );
 

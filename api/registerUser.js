@@ -1,6 +1,6 @@
 async ({ login, password, fullName }) => {
-  const user = { login, password, fullName };
-  const id = application.db.insert('SystemUser', user);
-  if (!id) throw new Error('Can not register user');
+  const hash = await api.security.hashPassword(password);
+  const user = { login, password: hash, fullName };
+  await application.db.insert('SystemUser', user);
   return { result: 'success' };
 };
