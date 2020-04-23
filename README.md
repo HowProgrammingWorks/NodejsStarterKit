@@ -34,7 +34,7 @@ implementations proposed in this document. Links will be available soon.
 
 ## Usage
 
-- You need node.js v12.5.0 or later
+- You need node.js v12.5.0 or later (v14 prefered)
 - Fork and clone this repository (optionally subscribe to repo changes)
 - Run `npm i` to install dependencies and generate RSA certificate
 - Remove unneeded dependencies if your project doesn't require them
@@ -42,7 +42,7 @@ implementations proposed in this document. Links will be available soon.
 - Start your project modifying this starter kit
 - Ask questions in https://t.me/nodeua and post issues on
 [github](https://github.com/HowProgrammingWorks/NodejsStarterKit/issues)
-- Run project: `node main.js` and stop with Ctrl+C
+- Run project: `node server.js` and stop with Ctrl+C
 
 ## License
 
