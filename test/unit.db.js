@@ -19,7 +19,8 @@ const database = new Database(databaseConfig, applicationStub);
     assert(result);
     assert.equal(result.rowCount, 1);
   } catch (err) {
-    assert.fail(err);
+    console.log(err.stack);
+    process.exit(1);
   }
   try {
     const fields = ['login', 'password'];
@@ -28,7 +29,8 @@ const database = new Database(databaseConfig, applicationStub);
     assert.equal(record.login, empty);
     assert.equal(record.password, empty);
   } catch (err) {
-    assert.fail(err);
+    console.log(err.stack);
+    process.exit(1);
   }
   try {
     const delta = { password: empty };
@@ -36,14 +38,16 @@ const database = new Database(databaseConfig, applicationStub);
     const result = await database.update('SystemUser', delta, cond);
     assert.equal(result.rowCount, 1);
   } catch (err) {
-    assert.fail(err);
+    console.log(err.stack);
+    process.exit(1);
   }
   try {
     const cond = { login: empty };
     const result = await database.delete('SystemUser', cond);
     assert.equal(result.rowCount, 1);
   } catch (err) {
-    assert.fail(err);
+    console.log(err.stack);
+    process.exit(1);
   }
   database.close();
 })();

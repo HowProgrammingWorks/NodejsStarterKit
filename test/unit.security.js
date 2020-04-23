@@ -19,6 +19,6 @@ security.hashPassword(password).then(hash => {
 }).then(result => {
   assert.deepEqual(result, [true, false]);
 }).catch(err => {
-  process.exitCode = 1;
-  assert.fail(err);
+  console.log(err.stack);
+  process.exit(1);
 });

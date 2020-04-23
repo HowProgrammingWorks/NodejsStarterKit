@@ -61,7 +61,8 @@ setTimeout(() => {
       assert.equal(res.statusCode, 200);
     });
     req.on('error', err => {
-      assert.fail(err);
+      console.log(err.stack);
+      process.exit(1);
     });
     if (task.data) req.write(task.data);
     req.end();
