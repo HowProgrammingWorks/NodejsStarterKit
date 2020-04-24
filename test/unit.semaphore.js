@@ -11,7 +11,7 @@ const sleep = msec => new Promise(resolve => {
 });
 
 assert(Semaphore);
-const semaphore = new Semaphore(2, 1000);
+const semaphore = new Semaphore(2, 10, 1000);
 assert(semaphore);
 
 let step = 0;
