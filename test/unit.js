@@ -1,7 +1,8 @@
 'use strict';
 
 const tests = [
-  'config', 'logger', 'db', 'server', 'sessions', 'application', 'security'
+  'config', 'logger', 'db', 'server', 'sessions', 'application', 'security',
+  'semaphore'
 ];
 
 for (const name of tests) {
