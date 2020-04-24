@@ -2,7 +2,7 @@
 
 const assert = require('assert').strict;
 
-const CountingSemaphore = require('../lib/semaphore.js');
+const Semaphore = require('../lib/semaphore.js');
 
 const sleep = msec => new Promise(resolve => {
   setTimeout(() => {
@@ -10,8 +10,8 @@ const sleep = msec => new Promise(resolve => {
   }, msec);
 });
 
-assert(CountingSemaphore);
-const semaphore = new CountingSemaphore(2, 1000);
+assert(Semaphore);
+const semaphore = new Semaphore(2, 1000);
 assert(semaphore);
 
 let step = 0;
