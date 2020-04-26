@@ -7,10 +7,10 @@ const resmon = require('./init/resmon.js');
 const utils = require('./init/utils.js');
 
 const application = new Application(worker);
-application.utils = utils;
+application.sandboxInject({ utils, resmon });
 
 application.on('started', () => {
-  resmon(application);
+  resmon.startMonitoring(application);
   application.logger.log(`Application started in worker ${worker.threadId}`);
 });
 
