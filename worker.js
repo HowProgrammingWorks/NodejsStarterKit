@@ -3,10 +3,12 @@
 const worker = require('worker_threads');
 
 const Application = require('./lib/application.js');
+const resmon = require('./init/resmon.js');
 
 const application = new Application(worker);
 
 application.on('started', () => {
+  resmon(application);
   application.logger.log(`Application started in worker ${worker.threadId}`);
 });
 
