@@ -1,5 +1,5 @@
 'use strict';
 
 module.exports = {
-  interval: 5000,
+  interval: 30000,
 };

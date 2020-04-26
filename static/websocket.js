@@ -24,6 +24,7 @@ const api = buildAPI([
   'signIn',
   'citiesByCountry',
   'countries',
+  'resmon',
 ]);
 
 const scenario = async () => {
