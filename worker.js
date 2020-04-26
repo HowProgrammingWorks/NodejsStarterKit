@@ -4,8 +4,10 @@ const worker = require('worker_threads');
 
 const Application = require('./lib/application.js');
 const resmon = require('./init/resmon.js');
+const utils = require('./init/utils.js');
 
 const application = new Application(worker);
+application.utils = utils;
 
 application.on('started', () => {
   resmon(application);
