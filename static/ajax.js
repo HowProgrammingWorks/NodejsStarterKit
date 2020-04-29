@@ -22,20 +22,18 @@ const buildAPI = methods => {
 
 const api = buildAPI([
   'registerUser',
-  'users',
-  'deleteUser',
-  'updateUser',
   'signIn',
   'citiesByCountry',
   'countries',
   'resmon',
+  'counter',
 ]);
 
 const scenario = async () => {
   await api.signIn({ login: 'marcus', password: 'marcus' });
-  const users = await api.users();
+  const data = await api.resmon();
   const output = document.getElementById('output');
-  output.innerHTML = 'HTTP GET /api/users<br>' + JSON.stringify(users.data);
+  output.innerHTML = 'HTTP GET /api/resmon<br>' + JSON.stringify(data);
 };
 
 scenario();

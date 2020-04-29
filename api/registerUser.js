@@ -1,6 +1,5 @@
 async ({ login, password, fullName }) => {
   const hash = await api.security.hashPassword(password);
-  const user = { login, password: hash, fullName };
-  await application.db.insert('SystemUser', user);
+  await application.auth.registerUser(login, hash, fullName);
   return { result: 'success' };
 };
