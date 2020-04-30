@@ -23,6 +23,7 @@ const buildAPI = methods => {
 const api = buildAPI([
   'registerUser',
   'signIn',
+  'status',
   'citiesByCountry',
   'countries',
   'resmon',
@@ -30,7 +31,11 @@ const api = buildAPI([
 ]);
 
 const scenario = async () => {
-  await api.signIn({ login: 'marcus', password: 'marcus' });
+  try {
+    await api.status();
+  } catch (err) {
+    await api.signIn({ login: 'marcus', password: 'marcus' });
+  }
   const data = await api.resmon();
   const output = document.getElementById('output');
   output.innerHTML = 'HTTP GET /api/resmon<br>' + JSON.stringify(data);
