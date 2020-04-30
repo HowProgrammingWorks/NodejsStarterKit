@@ -22,7 +22,6 @@ implementations proposed in this document. Links will be available soon.
 - Multi-threading for CPU utilization and isolation
 - Serve multiple ports in threads
 - Serve static files with memory cache
-- Load balancing for scaling
 - Application configuration
 - Simple logger and redirection from console
 - Database access layer (Postgresql)
@@ -31,6 +30,12 @@ implementations proposed in this document. Links will be available soon.
 - Request queue timeout and size
 - API parallel execution concurrency
 - API method execution timeout
+
+## Features to be implemented in next release
+
+- Load balancing for scaling
+- Prototype polution prevention
+- Better code isolation
 
 ## Usage
 
