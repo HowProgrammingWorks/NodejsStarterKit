@@ -49,7 +49,7 @@ let step = 0;
   try {
     await semaphore.enter();
     assert.equal(step++, 12);
-    assert.faile('Should not enter here');
+    assert.fail('Should not enter here');
     process.exit(1);
   } catch (err) {
     assert.equal(step++, 10);
