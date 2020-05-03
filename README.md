@@ -2,15 +2,16 @@
 
 ## Concept
 
-You can begin development from this starter kit but it is not for production
+You can begin development from this Starter Kit but it is not for production
 usage. After your application will be ready you can easely run it in
-Metaserverless cloud, an open source cloud platform based on Metarhia technology
-stack and Node.js. The purpose of this starter kit is to show simplicity of
-basic concepts, give structure and architecture example. All parts of this
-implementation are optimized for readability and for understanding, but not for
-performance and scalability. So it is good for development and better
-understanding. However, for deployment you need to take one of the
-implementations proposed in this document. Links will be available soon.
+[Metaserverless cloud](https://github.com/Metaserverless), an open source cloud
+platform based on [Metarhia technology stack](https://github.com/metarhia) and
+[Node.js](https://nodejs.org/en/). The purpose of this Starter Kit is to show
+simplicity of basic concepts, give structure and architecture example. All parts
+of this implementation are optimized for readability and for understanding, but
+not for performance and scalability. So it is good for development and better
+understanding. However, for production deployment you need to take
+[Metarhia Starter Kit](https://github.com/metarhia/StarterKit)
 
 ## Feature list
 
