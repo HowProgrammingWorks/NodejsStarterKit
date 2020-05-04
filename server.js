@@ -10,9 +10,12 @@ for (let i = 0; i < config.ports.length; i++) {
   workers.push(worker);
 }
 
-process.on('SIGINT', async () => {
+const exit = async () => {
   console.log();
   for (const worker of workers) {
     worker.postMessage({ name: 'stop' });
   }
-});
+};
+
+process.on('SIGINT', exit);
+process.on('SIGTERM', exit);
