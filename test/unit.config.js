@@ -10,9 +10,9 @@ assert(Config);
 const PATH = process.cwd();
 const configPath = path.join(PATH, 'config');
 
-const config = new Config(configPath);
-config.on('loaded', () => {
+(async () => {
+  const config = await new Config(configPath);
   assert(config.sections);
   assert(config.sections.database);
   assert(config.sections.server);
-});
+})();
