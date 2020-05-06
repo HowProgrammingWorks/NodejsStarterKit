@@ -1,6 +1,4 @@
-'use strict';
-
-module.exports = {
+({
   host: '127.0.0.1',
   transport: 'http',
   ports: [8000, 8001, 8002, 8003],
@@ -10,4 +8,4 @@ module.exports = {
     size: 2000,
     timeout: 3000,
   },
-};
+});
