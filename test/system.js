@@ -5,8 +5,9 @@ const assert = require('assert').strict;
 const { Worker } = require('worker_threads');
 
 const worker = new Worker('./worker.js');
-const config = require('../config/server.js');
 
+const HOST = '127.0.0.1';
+const PORT = 8000;
 const START_TIMEOUT = 500;
 const TEST_TIMEOUT = 3000;
 
@@ -30,8 +31,8 @@ const tasks = [
 
 const getRequest = task => {
   const request = {
-    host: config.host,
-    port: config.ports[0],
+    host: HOST,
+    port: PORT,
     agent: false
   };
   if (task.get) {

@@ -3,15 +3,19 @@
 const assert = require('assert').strict;
 
 const Database = require('../lib/db.js');
-const databaseConfig = require('../config/database.js');
 
 assert(Database);
 
-const applicationStub = { logger: { log: console.log } };
+const path = require('path');
+const Config = require('../lib/config.js');
+const APP_PATH = process.cwd();
+const CFG_PATH = path.join(APP_PATH, 'config');
 
-const database = new Database(databaseConfig, applicationStub);
+new Config(CFG_PATH).then(async config => {
+  const databaseConfig = config.sections.database;
+  const applicationStub = { logger: { log: console.log } };
+  const database = new Database(databaseConfig, applicationStub);
 
-(async () => {
   const empty = 'empty';
   try {
     const user = { login: empty, password: empty, fullName: empty };
@@ -50,4 +54,4 @@ const database = new Database(databaseConfig, applicationStub);
     process.exit(1);
   }
   database.close();
-})();
+});
