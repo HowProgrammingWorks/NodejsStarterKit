@@ -1,14 +1,22 @@
 'use strict';
 
 const { Worker } = require('worker_threads');
+const path = require('path');
 
-const config = require('./config/server.js');
+const Config = require('./lib/config.js');
+
+const APP_PATH = process.cwd();
+const CFG_PATH = path.join(APP_PATH, 'config');
 
 const workers = [];
-for (let i = 0; i < config.ports.length; i++) {
-  const worker = new Worker('./worker.js');
-  workers.push(worker);
-}
+
+new Config(CFG_PATH).then(config => {
+  const { sections } = config;
+  for (let i = 0; i < sections.server.ports.length; i++) {
+    const worker = new Worker('./worker.js');
+    workers.push(worker);
+  }
+});
 
 const exit = async () => {
   console.log();
