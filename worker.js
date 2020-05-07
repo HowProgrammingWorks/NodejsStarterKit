@@ -3,14 +3,15 @@
 const worker = require('worker_threads');
 
 const Application = require('./lib/application.js');
-const resmon = require('./init/resmon.js');
-const utils = require('./init/utils.js');
+const resmon = require('./domain/resmon.js');
+const utils = require('./domain/utils.js');
+const startMonitoring = require('./init/logResources.js');
 
 const application = new Application(worker);
 application.sandboxInject({ utils, resmon });
 
 application.on('started', () => {
-  resmon.startMonitoring(application);
+  startMonitoring(application);
   application.logger.log(`Application started in worker ${worker.threadId}`);
 });
 
