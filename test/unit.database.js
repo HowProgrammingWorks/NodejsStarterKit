@@ -2,7 +2,7 @@
 
 const assert = require('assert').strict;
 
-const Database = require('../lib/db.js');
+const Database = require('../lib/database.js');
 
 assert(Database);
 
