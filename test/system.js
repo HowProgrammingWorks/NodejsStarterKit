@@ -8,7 +8,7 @@ const worker = new Worker('./worker.js');
 
 const HOST = '127.0.0.1';
 const PORT = 8000;
-const START_TIMEOUT = 500;
+const START_TIMEOUT = 1000;
 const TEST_TIMEOUT = 3000;
 
 console.log('System test started');

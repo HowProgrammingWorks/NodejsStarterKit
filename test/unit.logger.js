@@ -6,10 +6,10 @@ const path = require('path');
 const Logger = require('../lib/logger.js');
 assert(Logger);
 
-const APP_PATH = process.cwd();
-const LOG_PATH = path.join(APP_PATH, 'log');
+const PATH = process.cwd();
 const workerId = 1;
-const logger = new Logger(LOG_PATH, workerId);
+const logPath = path.join(PATH, 'log');
+const logger = new Logger(logPath, workerId);
 assert(logger);
 
 assert(logger.write);
