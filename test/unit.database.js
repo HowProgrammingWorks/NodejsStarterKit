@@ -1,17 +1,19 @@
 'use strict';
 
 const assert = require('assert').strict;
+const path = require('path');
 
 const Database = require('../lib/database.js');
-
 assert(Database);
 
-const path = require('path');
 const Config = require('../lib/config.js');
-const APP_PATH = process.cwd();
-const CFG_PATH = path.join(APP_PATH, 'config');
+assert(Config);
 
-new Config(CFG_PATH).then(async config => {
+const PATH = process.cwd();
+
+(async () => {
+  const configPath = path.join(PATH, 'config');
+  const config = await new Config(configPath);
   const databaseConfig = config.sections.database;
   const applicationStub = { logger: { log: console.log } };
   const database = new Database(databaseConfig, applicationStub);
@@ -54,4 +56,4 @@ new Config(CFG_PATH).then(async config => {
     process.exit(1);
   }
   database.close();
-});
+})();
