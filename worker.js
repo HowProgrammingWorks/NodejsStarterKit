@@ -2,9 +2,7 @@
 
 const PATH = process.cwd();
 
-const fsp = require('fs').promises;
-const path = require('path');
-const worker = require('worker_threads');
+const { worker, fsp, path } = require('./lib/dependencies.js');
 const { threadId } = worker;
 
 const Application = require('./lib/application.js');
@@ -17,17 +15,16 @@ const resmon = require('./domain/resmon.js');
 const utils = require('./domain/utils.js');
 const startMonitoring = require('./init/logResources.js');
 
-const certPath = path.join(PATH, 'cert');
-
 (async () => {
   const configPath = path.join(PATH, 'config');
   const config = await new Config(configPath);
   const logPath = path.join(PATH, 'log');
   const logger = await new Logger(logPath, threadId);
   const application = new Application();
+  const certPath = path.join(PATH, 'cert');
   const key = await fsp.readFile(path.join(certPath, 'key.pem'));
   const cert = await fsp.readFile(path.join(certPath, 'cert.pem'));
-  Object.assign(application, { worker, config, logger, cert });
+  Object.assign(application, { config, logger, cert });
   application.cert = { key, cert };
   application.db = new Database(config.sections.database, application);
   application.server = new Server(config.sections.server, application);
