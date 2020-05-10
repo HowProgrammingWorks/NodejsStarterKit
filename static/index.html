@@ -1,10 +1,52 @@
 <!DOCTYPE html>
 <html>
-<head>
-<script src="ajax.js"></script>
-<link rel="stylesheet" type="text/css" href="screen.css" />
-</head>
+  <head>
+    <title>Metarhia Console</title>
+    <meta charset="utf-8">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="stylesheet" href="/console.css">
+    <script src="console.js"></script>
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link rel="apple-touch-icon-precomposed" href="/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no">
+    <link rel="shortcut icon" href="./favicon.ico" type="image/vnd.microsoft.icon" />
+    <link rel="icon" href="./favicon.ico" type="image/vnd.microsoft.icon" />
+    <link rel="apple-touch-icon-precomposed" href="/favicon.png" />
+    <link href='https://fonts.googleapis.com/css?family=Share+Tech+Mono' rel='stylesheet' type='text/css'>
+  </head>
 <body>
-  <div id="output"></div>
+  <div id="screenConsole">
+    <div id="panelColors">
+      <div class="colorA spacer"></div>
+      <div class="colorA"></div>
+      <div class="colorB"></div>
+      <div class="colorC"></div>
+      <div class="colorD"></div>
+      <div class="colorE"></div>
+      <div class="colorF"></div>
+      <div class="colorG"></div>
+      <div class="colorH"></div>
+      <div class="colorI"></div>
+      <div class="colorJ"></div>
+      <div class="colorK"></div>
+      <div class="colorL"></div>
+      <div class="colorL spacer"></div>
+    </div>
+    <div id="panelScroll">
+      <div id="controlScroll"></div>
+    </div>
+    <div id="panelConsole">
+      <div id="controlShadow"></div>
+      <div id="controlBrowse">
+        <div><img width="200" src="./metarhia.svg" /></div>
+        <div id="controlInput"></div>
+      </div>
+      <div id="controlKeyboard"></div>
+      <div id="controlCommand"></div>
+    </div>
+  </div>
 </body>
 </html>

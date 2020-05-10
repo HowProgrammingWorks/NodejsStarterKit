@@ -1,0 +1,158 @@
+* {
+  padding: 0;
+  margin: 0;
+  outline: none;
+  cursor: default;
+  -moz-user-select: inherit;
+}
+a, a * {
+  cursor: pointer;
+}
+html, body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11pt;
+  overflow: hidden;
+  height: 100%;
+  background: #000;
+  color: #FFF;
+}
+body {
+  height: 100%;
+}
+input, textarea {
+  -webkit-border-radius: 0;
+  -webkit-touch-callout: text;
+  -webkit-user-select: text;
+  -khtml-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+ul,ol {
+  padding: 0 0 0 30px;
+}
+#screenConsole {
+  height: 100%;
+}
+#screenConsole > div {
+  overflow: hidden;
+}
+#panelColors {
+  height: 100%;
+  width: 8px;
+  float: left;
+  background: #FF0000;
+}
+.colorA { background: #AA0077; height: 40px; }
+.colorB { background: #552277; }
+.colorC { background: #2222BB; }
+.colorD { background: #0033DD; }
+.colorE { background: #006699; }
+.colorF { background: #009933; }
+.colorG { background: #7FD900; }
+.colorH { background: #F2F200; }
+.colorI { background: #FFBF00; }
+.colorJ { background: #FF8C00; }
+.colorK { background: #FF3300; }
+.colorL { background: #FF0000; height: 40px; }
+#panelLogo {
+  margin: 4px;
+  position: absolute;
+  top: 0;
+  left: 8px;
+  right: 8px;
+  background: #000;
+}
+#panelConsole {
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  top: 8px;
+  bottom: 0;
+}
+#panelScroll {
+  height: 100%;
+  width: 8px;
+  float: right;
+  background: #262626;
+}
+#controlScroll {
+  background: #009933;
+  position: absolute;
+  width: 8px;
+  height: 25px;
+  bottom: 0px;
+}
+#panelColors > div {
+  height: 25pt;
+}
+#controlShadow {
+  position: absolute;
+  top: -10px;
+  left: 0;
+  right: 0;
+  height: 10px;
+  box-shadow: 0px 0px 20px 6px rgba(0,0,0,1);
+  z-index: 1;
+}
+#controlBrowse {
+  padding: 4px;
+  color: #009933;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+#controlBrowse td {
+  padding: 2px 4px;
+}
+#controlBrowse th {
+  padding: 2px 4px;
+  font-weight: bold;
+  color: #FFBF00;
+}
+#controlBrowse tr:nth-child(even) {
+  background: #101010;
+}
+#controlBrowse tr:nth-child(odd) {
+  background: #262626;
+}
+#controlInput {
+  color: #009933;
+}
+#controlInput span {
+  animation: blinker 1s ease-out infinite;
+  margin-left: 2px;
+}
+@keyframes blinker {
+  50% { opacity: 0.0; }
+}
+#controlKeyboard {
+  background: #000;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+#controlKeyboard .key {
+  font-size: 1.4em;
+  background: #262626;
+  display: inline-block;
+  text-align: center;
+  width: 10%;
+  height: 25px;
+}
+.caps {
+  text-transform: uppercase;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+#controlBrowseSpacer {
+  height: 100%;
+}

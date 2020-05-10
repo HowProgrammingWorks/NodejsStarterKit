@@ -22,7 +22,7 @@ worker.on('exit', () => {
 
 const tasks = [
   { get: '/' },
-  { get: '/websocket.js' },
+  { get: '/console.js' },
   {
     post: '/api/signIn',
     data: { login: 'marcus', password: 'marcus' }
