@@ -1,6 +1,6 @@
 ({
   host: '127.0.0.1',
-  transport: 'http',
+  transport: 'ws',
   ports: [8000, 8001, 8002, 8003],
   timeout: 5000,
   concurrency: 1000,

@@ -1,0 +1,21 @@
+{
+  "short_name": "Metarhia",
+  "name": "Metarhia console",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "type": "image/png",
+      "sizes": "128x128"
+    },
+    {
+      "src": "/metarhia.png",
+      "type": "image/png",
+      "sizes": "256x256"
+    }
+  ],
+  "start_url": "/",
+  "background_color": "#552277",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#009933"
+}
