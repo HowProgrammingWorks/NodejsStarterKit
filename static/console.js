@@ -33,15 +33,7 @@ const buildAPI = (methods, socket = null) => {
   return api;
 };
 
-const api = buildAPI([
-  'registerUser',
-  'signIn',
-  'status',
-  'citiesByCountry',
-  'countries',
-  'resmon',
-  'counter',
-], socket);
+let api = buildAPI(['status', 'signIn', 'introspection'], socket);
 
 // Console Emulation
 
@@ -288,6 +280,8 @@ const signIn = async () => {
   } catch (err) {
     await api.signIn({ login: 'marcus', password: 'marcus' });
   }
+  const methods = await api.introspection();
+  api = buildAPI(methods, socket);
 };
 
 window.addEventListener('load', () => {
