@@ -32,21 +32,35 @@ window.addEventListener('load', registerServiceWorker);
 
 // API Builder
 
-const socket = new WebSocket('ws://127.0.0.1:8000/');
-
-const buildAPI = methods => {
+const buildAPI = (methods, socket = null) => {
   const api = {};
   for (const method of methods) {
-    api[method] = (args = {}) => new Promise(resolve => {
+    api[method] = (args = {}) => new Promise((resolve, reject) => {
       console.log({ method, args });
-      socket.send(JSON.stringify({ method, args }));
-      socket.onmessage = event => {
-        resolve(JSON.parse(event.data));
-      };
+      if (socket) {
+        socket.send(JSON.stringify({ method, args }));
+        socket.onmessage = event => {
+          const obj = JSON.parse(event.data);
+          if (obj.result !== 'error') resolve(obj);
+          else reject(new Error(`Status Code: ${status}`));
+        };
+      } else {
+        fetch(`/api/${method}`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(args),
+        }).then(res => {
+          const { status } = res;
+          if (status === 200) resolve(res.json());
+          else reject(new Error(`Status Code: ${status}`));
+        });
+      }
     });
   }
   return api;
 };
+
+const socket = new WebSocket('ws://127.0.0.1:8000/');
 
 const api = buildAPI([
   'registerUser',
@@ -56,7 +70,7 @@ const api = buildAPI([
   'countries',
   'resmon',
   'counter',
-]);
+], socket);
 
 // Console Emulation
 
@@ -311,8 +325,9 @@ function commandLoop() {
 }
 
 const scenario = async () => {
-  const status = await api.status();
-  if (status.result === 'error') {
+  try {
+    await api.status();
+  } catch (err) {
     await api.signIn({ login: 'marcus', password: 'marcus' });
   }
   const data = await api.resmon();
