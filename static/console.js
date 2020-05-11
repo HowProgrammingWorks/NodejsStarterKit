@@ -1,42 +1,15 @@
 'use strict';
 
-const registerServiceWorker = () => {
-  if (!Reflect.has(navigator, 'serviceWorker')) {
-    console.log('Service workers are not supported');
-    return;
-  }
-  const { serviceWorker } = navigator;
-  serviceWorker.register('/worker.js').then(registration => {
-    if (registration.installing) {
-      console.log('Service worker installing');
-      console.log(registration.installing);
-      return;
-    }
-    if (registration.waiting) {
-      console.log('Service worker installed');
-      console.log(registration.waiting);
-      return;
-    }
-    if (registration.active) {
-      console.log('Service worker active');
-      console.log(registration.active);
-      return;
-    }
-  }).catch(error => {
-    console.log('Registration failed');
-    console.log(error);
-  });
-};
-
-window.addEventListener('load', registerServiceWorker);
+const { serviceWorker, userAgent } = navigator;
 
 // API Builder
+
+const socket = new WebSocket('ws://127.0.0.1:8000/');
 
 const buildAPI = (methods, socket = null) => {
   const api = {};
   for (const method of methods) {
     api[method] = (args = {}) => new Promise((resolve, reject) => {
-      console.log({ method, args });
       if (socket) {
         socket.send(JSON.stringify({ method, args }));
         socket.onmessage = event => {
@@ -59,8 +32,6 @@ const buildAPI = (methods, socket = null) => {
   }
   return api;
 };
-
-const socket = new WebSocket('ws://127.0.0.1:8000/');
 
 const api = buildAPI([
   'registerUser',
@@ -100,13 +71,13 @@ let controlInput, controlBrowse, controlScroll;
 const pad = (padChar, length) => new Array(length + 1).join(padChar);
 
 const isMobile = () => (
-  navigator.userAgent.match(/Android/i) ||
-  navigator.userAgent.match(/webOS/i) ||
-  navigator.userAgent.match(/iPhone/i) ||
-  navigator.userAgent.match(/iPad/i) ||
-  navigator.userAgent.match(/iPod/i) ||
-  navigator.userAgent.match(/BlackBerry/i) ||
-  navigator.userAgent.match(/Windows Phone/i)
+  userAgent.match(/Android/i) ||
+  userAgent.match(/webOS/i) ||
+  userAgent.match(/iPhone/i) ||
+  userAgent.match(/iPad/i) ||
+  userAgent.match(/iPod/i) ||
+  userAgent.match(/BlackBerry/i) ||
+  userAgent.match(/Windows Phone/i)
 );
 
 let viewportHeight, viewableRatio;
@@ -206,13 +177,10 @@ const inputKeyboardEvents = {
     inputSetValue('');
   },
   BACKSPACE() {
-    let value = controlInput.inputValue;
-    value = value.slice(0, -1);
-    inputSetValue(value);
+    inputSetValue(controlInput.inputValue.slice(0, -1));
   },
   ENTER() {
-    const result = controlInput.inputValue;
-    let value = result;
+    let value = controlInput.inputValue;
     if (controlInput.inputType === 'masked') {
       value = pad('*', value.length);
     }
@@ -232,14 +200,12 @@ const inputKeyboardEvents = {
     if (controlKeyboard.className === 'caps') {
       char = char.toUpperCase();
     }
-    let value = controlInput.inputValue;
-    value += char;
-    inputSetValue(value);
+    inputSetValue(controlInput.inputValue + char);
   }
 };
 
-const makeKeyboardClick = char => e => {
-  char = e.target.inputChar;
+const keyboardClick = e => {
+  let char = e.target.inputChar;
   if (char === '_') char = ' ';
   let keyName = 'KEY';
   if (char === '<') keyName = 'BACKSPACE';
@@ -260,21 +226,18 @@ const initKeyboard = () => {
     'asdfghjkl<',
     '^zxcvbnm_>'
   ];
-  let i, j, char, keyboardClick;
-  let keyboardLine, elementKey, elementLine;
-  for (i = 0; i < KEYBOARD_LAYOUT.length; i++) {
-    keyboardLine = KEYBOARD_LAYOUT[i];
-    elementLine = document.createElement('div');
+  for (let i = 0; i < KEYBOARD_LAYOUT.length; i++) {
+    const keyboardLine = KEYBOARD_LAYOUT[i];
+    const elementLine = document.createElement('div');
     controlKeyboard.appendChild(elementLine);
-    for (j = 0; j < keyboardLine.length; j++) {
-      char = keyboardLine[j];
+    for (let j = 0; j < keyboardLine.length; j++) {
+      let char = keyboardLine[j];
       if (char === ' ') char = '&nbsp;';
-      elementKey = document.createElement('div');
+      const elementKey = document.createElement('div');
       elementKey.innerHTML = char;
       elementKey.inputChar = char;
       elementKey.className = 'key';
       elementKey.style.opacity = ((i + j) % 2) ? 0.8 : 1;
-      keyboardClick = makeKeyboardClick(char);
       elementKey.addEventListener('click', keyboardClick);
       elementLine.appendChild(elementKey);
     }
@@ -283,10 +246,9 @@ const initKeyboard = () => {
 };
 
 document.onkeydown = event => {
-  let keyName, fn;
   if (controlInput.inputActive) {
-    keyName = KEY_NAME[event.keyCode];
-    fn = inputKeyboardEvents[keyName];
+    const keyName = KEY_NAME[event.keyCode];
+    const fn = inputKeyboardEvents[keyName];
     if (fn) {
       fn();
       return false;
@@ -305,10 +267,6 @@ document.onkeypress = event => {
   }
 };
 
-const help = [
-  '', 'Commands: about, fields, team, links, stack, contacts'
-];
-
 const exec = async line => {
   const args = line.split(' ');
   const cmd = args.shift();
@@ -324,17 +282,16 @@ function commandLoop() {
   });
 }
 
-const scenario = async () => {
+const signIn = async () => {
   try {
     await api.status();
   } catch (err) {
     await api.signIn({ login: 'marcus', password: 'marcus' });
   }
-  const data = await api.resmon();
-  print('HTTP GET /api/resmon ' + JSON.stringify(data));
 };
 
 window.addEventListener('load', () => {
+  serviceWorker.register('/worker.js');
   panelScroll = document.getElementById('panelScroll');
   controlInput = document.getElementById('controlInput');
   controlKeyboard = document.getElementById('controlKeyboard');
@@ -344,15 +301,17 @@ window.addEventListener('load', () => {
   initScroll();
   const path = window.location.pathname.substring(1);
   print([
-    'Metarhia/KPI is a Research & Development Center',
-    'in Kiev Polytechnic Institute (ICT faculty)',
-  ].concat(help));
+    'Metarhia is a Community, Technology Stack and R&D Center',
+    'for Cloud Computing and Distributed Database Systems',
+    '',
+    'Commands: about, fields, team, links, stack, contacts',
+  ]);
   if (path) {
     setTimeout(() => {
       exec('contacts ' + path);
       window.history.replaceState(null, '', '/');
     }, TIME_LINE * 3);
   }
-  scenario();
+  signIn();
   commandLoop();
 });
