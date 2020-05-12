@@ -1,4 +1,4 @@
-(async () => [
+async () => [
   'Metarhia is a Community and Technology Stack',
   'for Distributed Highload Applications and Data Storage',
   '',
@@ -25,4 +25,4 @@
   'Objective-C, Kotlin, C#, Delphi, Assembler, Python, Haskell, etc.',
   'We provide solutions for Unix/Linux, Windows, OSX, Android, Internet',
   'solutions and Embedded systems.'
-]);
+];
