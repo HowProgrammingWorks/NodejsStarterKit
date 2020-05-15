@@ -1,7 +1,5 @@
 'use strict';
 
-const { serviceWorker, userAgent } = navigator;
-
 // API Builder
 
 const socket = new WebSocket('ws://127.0.0.1:8000/');
@@ -61,6 +59,8 @@ let controlKeyboard, panelScroll;
 let controlInput, controlBrowse, controlScroll;
 
 const pad = (padChar, length) => new Array(length + 1).join(padChar);
+
+const { userAgent } = navigator;
 
 const isMobile = () => (
   userAgent.match(/Android/i) ||
@@ -285,7 +285,6 @@ const signIn = async () => {
 };
 
 window.addEventListener('load', () => {
-  serviceWorker.register('/worker.js');
   panelScroll = document.getElementById('panelScroll');
   controlInput = document.getElementById('controlInput');
   controlKeyboard = document.getElementById('controlKeyboard');
