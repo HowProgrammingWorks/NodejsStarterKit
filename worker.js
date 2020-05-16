@@ -22,10 +22,14 @@ const startMonitoring = require('./init/logResources.js');
   const logger = await new Logger(logPath, threadId);
   const application = new Application();
   const certPath = path.join(PATH, 'cert');
-  const key = await fsp.readFile(path.join(certPath, 'key.pem'));
-  const cert = await fsp.readFile(path.join(certPath, 'cert.pem'));
-  Object.assign(application, { config, logger, cert });
-  application.cert = { key, cert };
+  Object.assign(application, { config, logger });
+  try {
+    const key = await fsp.readFile(path.join(certPath, 'key.pem'));
+    const cert = await fsp.readFile(path.join(certPath, 'cert.pem'));
+    application.cert = { key, cert };
+  } catch {
+    if (threadId === 1) logger.log('Can not load TLS certificates');
+  }
   application.db = new Database(config.sections.database, application);
   application.server = new Server(config.sections.server, application);
   application.auth = initAuth(application);
