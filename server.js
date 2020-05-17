@@ -15,7 +15,7 @@ const CFG_PATH = path.join(PATH, 'config');
   const workers = new Array(count);
 
   const start = id => {
-    const worker = new Worker('./worker.js');
+    const worker = new Worker('./lib/worker.js');
     workers[id] = worker;
     worker.on('exit', code => {
       if (code !== 0) start(id);

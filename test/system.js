@@ -4,7 +4,7 @@ const http = require('http');
 const assert = require('assert').strict;
 const { Worker } = require('worker_threads');
 
-const worker = new Worker('./worker.js');
+const worker = new Worker('./lib/worker.js');
 
 const HOST = '127.0.0.1';
 const PORT = 8000;
