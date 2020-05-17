@@ -21,7 +21,7 @@ worker.on('exit', () => {
 });
 
 const tasks = [
-  { get: '/' },
+  { get: '/', status: 302 },
   { get: '/console.js' },
   {
     post: '/api/signIn',
@@ -59,7 +59,8 @@ setTimeout(() => {
     const request = getRequest(task);
     const req = http.request(request);
     req.on('response', res => {
-      assert.equal(res.statusCode, 200);
+      const expectedStatus = task.status || 200;
+      assert.equal(res.statusCode, expectedStatus);
     });
     req.on('error', err => {
       console.log(err.stack);
