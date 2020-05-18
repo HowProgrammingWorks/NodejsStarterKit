@@ -8,15 +8,15 @@
   },
 
   start() {
-    const { config } = application.resmon;
-    setInterval(() => {
+    const { interval } = application.resmon.config;
+    api.timers.setInterval(() => {
       const stats = application.resmon.getStatistics();
       const { heapTotal, heapUsed, external, contexts, detached } = stats;
       const total = application.utils.bytesToSize(heapTotal);
       const used = application.utils.bytesToSize(heapUsed);
       const ext = application.utils.bytesToSize(external);
-      application.logger.log(`Heap: ${used} of ${total}, ext: ${ext}`);
-      application.logger.log(`Contexts: ${contexts}, detached: ${detached}`);
-    }, config.interval);
+      console.log(`Heap: ${used} of ${total}, ext: ${ext}`);
+      console.log(`Contexts: ${contexts}, detached: ${detached}`);
+    }, interval);
   }
 });
