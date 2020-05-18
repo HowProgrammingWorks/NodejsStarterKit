@@ -2,7 +2,7 @@
   "rules": {
     "strict": [
       "error",
-      "global"
+      "never"
     ]
   },
   "globals": {
