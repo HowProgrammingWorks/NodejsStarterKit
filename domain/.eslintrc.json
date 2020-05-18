@@ -1,0 +1,14 @@
+{
+  "rules": {
+    "strict": [
+      "error",
+      "global"
+    ]
+  },
+  "globals": {
+    "BigInt": true,
+    "application": true,
+    "context": true,
+    "api": true
+  }
+}
