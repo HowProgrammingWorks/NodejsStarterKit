@@ -1,6 +1,6 @@
 {
   "name": "nodejsstarterkit",
-  "version": "2.0.0-alpha.0",
+  "version": "2.0.0",
   "private": true,
   "description": "Node.js Starter Kit",
   "author": "Timur Shemsedinov <timur.shemsedinov@gmail.com>",
@@ -47,10 +47,10 @@
     "node": ">=12.5.0"
   },
   "devDependencies": {
-    "eslint": "^6.8.0"
+    "eslint": "^7.0.0"
   },
   "dependencies": {
-    "pg": "^8.0.3",
-    "ws": "^7.2.5"
+    "pg": "^8.1.1",
+    "ws": "^7.3.0"
   }
 }
