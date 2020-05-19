@@ -2,7 +2,7 @@
 
 // API Builder
 
-const socket = new WebSocket('ws://127.0.0.1:8000/');
+const socket = new WebSocket('wss://' + location.host);
 
 const buildAPI = (methods, socket = null) => {
   const api = {};
