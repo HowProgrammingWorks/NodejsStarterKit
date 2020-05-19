@@ -9,7 +9,7 @@
 
   start() {
     const { interval } = application.resmon.config;
-    api.timers.setInterval(() => {
+    setInterval(() => {
       const stats = application.resmon.getStatistics();
       const { heapTotal, heapUsed, external, contexts, detached } = stats;
       const total = application.utils.bytesToSize(heapTotal);
