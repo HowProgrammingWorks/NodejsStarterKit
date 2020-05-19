@@ -41,7 +41,7 @@ understanding. However, for production deployment you need to take
 ## Usage
 
 - You need node.js v12.5.0 or later (v14 prefered), linux (tested on Fedora 30,
-Ubuntu 16 and 18, CentOS 7 and 8)
+Ubuntu 16, 18, 19 and 20, CentOS 7 and 8)
 - Fork and clone this repository (optionally subscribe to repo changes)
 - Run `npm i` to install dependencies and generate RSA certificate
 - Remove unneeded dependencies if your project doesn't require them
