@@ -25,7 +25,6 @@ const CFG_PATH = path.join(PATH, 'config');
   for (let id = 0; id < count; id++) start(id);
 
   const stop = async () => {
-    console.log();
     for (const worker of workers) {
       worker.postMessage({ name: 'stop' });
     }
