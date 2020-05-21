@@ -6,7 +6,6 @@
     ]
   },
   "globals": {
-    "BigInt": "readonly",
     "application": "readonly",
     "context": "readonly",
     "api": "readonly"
