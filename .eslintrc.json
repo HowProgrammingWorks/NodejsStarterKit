@@ -8,9 +8,6 @@
   "parserOptions": {
     "ecmaVersion": 2020
   },
-  "globals": {
-    "BigInt": true
-  },
   "rules": {
     "indent": [
       "error",
