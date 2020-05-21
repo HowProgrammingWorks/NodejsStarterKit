@@ -41,19 +41,27 @@ platform based on [Metarhia technology stack](https://github.com/metarhia) and
 - Multiple IDEs support
 - Better testing
 
+## Requirements
+
+- Node.js v12.5.0 or later (v14 prefered)
+- Linux (tested on Fedora 30, Ubuntu 16, 18, 19 and 20, CentOS 7 and 8)
+- Postgresql 9.5 or later (v11.8 prefered)
+- OpenSSL v1.1.1 or later
+- certbot (recommended but optional)
+
 ## Usage
 
-- You need node.js v12.5.0 or later (v14 prefered), linux (tested on Fedora 30,
-Ubuntu 16, 18, 19 and 20, CentOS 7 and 8), Postgresql 9.5 or later (v11.8
-prefered), OpenSSL v1.1.1 or later, certbot (recommended but optional)
-- Fork and clone this repository (optionally subscribe to repo changes)
-- Run `npm i` to install dependencies and generate RSA certificate
-- Remove unneeded dependencies if your project doesn't require them
-- Add your license to `LICENSE` file but don't remove starter kit license
-- Start your project modifying this starter kit
-- Ask questions in https://t.me/nodeua and post issues on
-[github](https://github.com/HowProgrammingWorks/NodejsStarterKit/issues)
-- Run project: `node server.js` and stop with Ctrl+C
+1. Fork and clone this repository (optionally subscribe to repo changes)
+2. Remove unneeded dependencies if your project doesn't require them
+3. Run `npm install` to install dependencies and generate certificate
+4. Add your license to `LICENSE` file but don't remove starter kit license
+5. Start your project by modifying this starter kit
+6. Run project with `node server.js` and stop with Ctrl+C
+
+## Help
+
+Ask questions in https://t.me/nodeua and post issues on
+[github](https://github.com/HowProgrammingWorks/NodejsStarterKit/issues).
 
 ## License
 
