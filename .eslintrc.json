@@ -9,7 +9,7 @@
     "ecmaVersion": 2020
   },
   "globals": {
-    "BigInt": true
+    "BigInt": "readonly"
   },
   "rules": {
     "indent": [
