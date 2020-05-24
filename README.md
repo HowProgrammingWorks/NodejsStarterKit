@@ -2,15 +2,15 @@
 
 ## Concept
 
-You can begin development from this Starter Kit but it is not for production
+You can begin development from this Starter Kit, but it is not for production
 usage. The purpose of this Starter Kit is to show simplicity, basic concepts,
-give structure and architecture example. All parts of this implementation are
-optimized for readability and for understanding, but not for performance and
+give structure and architecture examples. All parts of this implementation are
+optimized for readability and understanding, but not for performance and
 scalability.
-So it is good for development and education. However, for production deployment
-you may need [Metarhia Starter Kit](https://github.com/metarhia/StarterKit)
-(it will be released in the middle of July 2020). After your application will be
-ready you can easely run it in
+So it is good for development and education. However, for production deployment,
+you may need the [Metarhia Starter Kit](https://github.com/metarhia/StarterKit)
+(it will be released in the middle of July 2020). After your application is
+ready, you can easily run it in the
 [Metaserverless cloud](https://github.com/Metaserverless), an open source cloud
 platform based on [Metarhia technology stack](https://github.com/metarhia) and
 [Node.js](https://nodejs.org/en/).
@@ -26,28 +26,28 @@ platform based on [Metarhia technology stack](https://github.com/metarhia) and
 - Serve multiple ports in threads
 - Serve static files with memory cache
 - Application configuration
-- Simple logger and redirection from console
+- Simple logger and redirection from a console
 - Database access layer (Postgresql)
 - Persistent sessions (stored in DB)
 - Unit-tests and API tests example
 - Request queue with timeout and size
 - Execution timeout and error handling
-- Layered architecture: core, domain, api, client
+- Layered architecture: core, domain, API, client
 
-## Features to be implemented in next release
+## Features to be implemented in the next release
 
 - Load balancing for scaling
-- Prototype polution prevention
+- Prototype pollution prevention
 - Multiple IDEs support
 - Better testing
 
 ## Requirements
 
-- Node.js v12.5.0 or later (v14 prefered)
+- Node.js v12.5.0 or later (v14 preferred)
 - Linux (tested on Fedora 30, Ubuntu 16, 18, 19 and 20, CentOS 7 and 8)
-- Postgresql 9.5 or later (v11.8 prefered)
+- Postgresql 9.5 or later (v11.8 preferred)
 - OpenSSL v1.1.1 or later
-- certbot (recommended but optional)
+- [certbot](https://github.com/certbot/certbot) (recommended but optional)
 
 ## Usage
 
@@ -60,7 +60,7 @@ platform based on [Metarhia technology stack](https://github.com/metarhia) and
 
 ## Help
 
-Ask questions in https://t.me/nodeua and post issues on
+Ask questions at https://t.me/nodeua and post issues on
 [github](https://github.com/HowProgrammingWorks/NodejsStarterKit/issues).
 
 ## License
