@@ -13,7 +13,7 @@ const buildAPI = (methods, socket = null) => {
         socket.onmessage = event => {
           const obj = JSON.parse(event.data);
           if (obj.result !== 'error') resolve(obj);
-          else reject(new Error(`Status Code: ${status}`));
+          else reject(new Error(`Status Code: ${obj.reason}`));
         };
       } else {
         fetch(`/api/${method}`, {
