@@ -3,6 +3,9 @@
 const assert = require('assert').strict;
 const path = require('path');
 
+const application = require('../lib/application.js');
+application.logger = { log: console.log };
+
 const Database = require('../lib/database.js');
 assert(Database);
 
@@ -15,8 +18,7 @@ const PATH = process.cwd();
   const configPath = path.join(PATH, 'config');
   const config = await new Config(configPath);
   const databaseConfig = config.sections.database;
-  const applicationStub = { logger: { log: console.log } };
-  const database = new Database(databaseConfig, applicationStub);
+  const database = new Database(databaseConfig);
 
   const empty = 'empty';
   try {
