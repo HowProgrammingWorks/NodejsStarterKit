@@ -1,1 +1,1 @@
-(application.introspection);
+(application.introspect);
