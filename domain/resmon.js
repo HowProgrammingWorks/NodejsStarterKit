@@ -9,14 +9,13 @@
 
   start() {
     const { interval } = application.resmon.config;
-    setInterval(() => {
+    setTimeout(() => {
       const stats = application.resmon.getStatistics();
-      const { heapTotal, heapUsed, external, contexts, detached } = stats;
+      const { heapTotal, heapUsed, external } = stats;
       const total = application.utils.bytesToSize(heapTotal);
       const used = application.utils.bytesToSize(heapUsed);
       const ext = application.utils.bytesToSize(external);
       console.log(`Heap: ${used} of ${total}, ext: ${ext}`);
-      console.log(`Contexts: ${contexts}, detached: ${detached}`);
     }, interval);
   }
 });
