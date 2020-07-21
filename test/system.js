@@ -11,6 +11,8 @@ const PORT = 8000;
 const START_TIMEOUT = 1000;
 const TEST_TIMEOUT = 3000;
 
+let callId = 0;
+
 console.log('System test started');
 setTimeout(async () => {
   worker.postMessage({ name: 'stop' });
@@ -24,8 +26,9 @@ const tasks = [
   { get: '/', status: 302 },
   { get: '/console.js' },
   {
-    post: '/api/signIn',
-    data: { login: 'marcus', password: 'marcus' }
+    post: '/api',
+    method: 'signIn',
+    args: { login: 'marcus', password: 'marcus' }
   }
 ];
 
@@ -42,8 +45,9 @@ const getRequest = task => {
     request.method = 'POST';
     request.path = task.post;
   }
-  if (task.data) {
-    task.data = JSON.stringify(task.data);
+  if (task.args) {
+    const packet = { call: ++callId, [task.method]: task.args };
+    task.data = JSON.stringify(packet);
     request.headers = {
       'Content-Type': 'application/json',
       'Content-Length': task.data.length
