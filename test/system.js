@@ -18,8 +18,8 @@ setTimeout(async () => {
   worker.postMessage({ name: 'stop' });
 }, TEST_TIMEOUT);
 
-worker.on('exit', () => {
-  console.log('System test finished');
+worker.on('exit', code => {
+  console.log(`System test finished with code ${code}`);
 });
 
 const tasks = [
@@ -64,11 +64,12 @@ setTimeout(() => {
     const req = http.request(request);
     req.on('response', res => {
       const expectedStatus = task.status || 200;
-      assert.equal(res.statusCode, expectedStatus);
+      setTimeout(() => {
+        assert.equal(res.statusCode, expectedStatus);
+      }, TEST_TIMEOUT);
     });
     req.on('error', err => {
       console.log(err.stack);
-      process.exit(1);
     });
     if (task.data) req.write(task.data);
     req.end();
