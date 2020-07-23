@@ -8,6 +8,8 @@ const Config = require('./lib/config.js');
 const PATH = process.cwd();
 const CFG_PATH = path.join(PATH, 'config');
 
+const options = { trackUnmanagedFds: true };
+
 (async () => {
   const config = await new Config(CFG_PATH);
   const { sections } = config;
@@ -15,7 +17,7 @@ const CFG_PATH = path.join(PATH, 'config');
   const workers = new Array(count);
 
   const start = id => {
-    const worker = new Worker('./lib/worker.js');
+    const worker = new Worker('./lib/worker.js', options);
     workers[id] = worker;
     worker.on('exit', code => {
       if (code !== 0) start(id);
