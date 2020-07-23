@@ -44,7 +44,7 @@
   },
   "homepage": "https://github.com/HowProgrammingWorks/NodejsStarterKit",
   "engines": {
-    "node": ">=12.5.0"
+    "node": ">=12.9.0"
   },
   "devDependencies": {
     "eslint": "^7.4.0"
