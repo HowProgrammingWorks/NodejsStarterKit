@@ -9,7 +9,9 @@ export class Metacom {
         const packet = JSON.parse(data);
         const { callback, event } = packet;
         const callId = callback || event;
-        const [resolve, reject] = this.calls.get(callId);
+        const promised = this.calls.get(callId);
+        if (!promised) return;
+        const [resolve, reject] = promised;
         if (packet.error) {
           const { code, message } = packet.error;
           const error = new Error(message);
@@ -39,9 +41,8 @@ export class Metacom {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(packet),
       }).then(res => {
-        const { status } = res;
-        if (status === 200) return res.json().then(({ result }) => result);
-        throw new Error(`Status Code: ${status}`);
+        if (res.status === 200) return res.json().then(({ result }) => result);
+        throw new Error(`Status Code: ${res.status}`);
       });
     };
   }

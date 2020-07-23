@@ -10,8 +10,7 @@ const CFG_PATH = path.join(PATH, 'config');
 
 (async () => {
   const config = await new Config(CFG_PATH);
-  const { sections } = config;
-  const count = sections.server.ports.length;
+  const count = config.sections.server.ports.length;
   const workers = new Array(count);
 
   const start = id => {
