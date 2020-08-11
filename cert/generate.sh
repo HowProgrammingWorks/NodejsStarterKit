@@ -10,12 +10,12 @@ if [ -f "$KEY_FILE" ]; then
   fi
 fi
 
-echo "Generating private ed25519 key"
-openssl genpkey -algorithm ed25519 -out $KEY_FILE
-if [ $? != 0 ]; then
-  echo "Failed to generate ed25519 key, fallback to RSA"
-  echo "Generating private RSA2048 key"
-  openssl genrsa -out key.pem 2048
+if [ "$1" == "secure" ]; then
+  echo "Generating private ed25519 key"
+  openssl genpkey -algorithm ed25519 -out $KEY_FILE
+else
+  echo "Generating private RSA3072 key"
+  openssl genrsa -out key.pem 3072
 fi
 
 set -e
