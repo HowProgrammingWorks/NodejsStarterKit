@@ -31,7 +31,7 @@
   ],
   "main": "server.js",
   "scripts": {
-    "test": "npm run -s lint && node test/all.js",
+    "test": "npm run -s lint && tsc && node test/all.js",
     "lint": "eslint .",
     "install": "cert/generate.sh"
   },
