@@ -8,7 +8,7 @@ give structure and architecture examples. All parts of this implementation are
 optimized for readability and understanding, but not for performance and
 scalability.
 So it is good for development and education. However, for production deployment,
-you may need the [Metarhia Starter Kit](https://github.com/metarhia/StarterKit)
+you may need the [Metarhia Example App](https://github.com/metarhia/Example)
 (it will be released in the middle of July 2020). After your application is
 ready, you can easily run it in the
 [Metaserverless cloud](https://github.com/Metaserverless), an open source cloud
