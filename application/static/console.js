@@ -1,6 +1,7 @@
 import { Metacom } from './metacom.js';
 
-const metacom = new Metacom(location.host);
+const protocol = location.protocol === 'http:' ? 'ws' : 'wss';
+const metacom = new Metacom(`${protocol}://${location.host}`);
 const { api } = metacom;
 window.api = api;
 
@@ -228,11 +229,60 @@ document.onkeypress = event => {
   }
 };
 
+const blobToBase64 = blob => {
+  const reader = new FileReader();
+  reader.readAsDataURL(blob);
+  return new Promise(resolve => {
+    reader.onloadend = () => {
+      resolve(reader.result);
+    };
+  });
+};
+
+const uploadFile = (file, done) => {
+  blobToBase64(file)
+    .then(url => {
+      const data = url.substring(url.indexOf(',') + 1);
+      api.example.uploadFile({ name: file.name, data }).then(done);
+    });
+};
+
+const upload = () => {
+  const element = document.createElement('form');
+  element.style.visibility = 'hidden';
+  element.innerHTML = '<input id="fileSelect" type="file" multiple />';
+  document.body.appendChild(element);
+  const fileSelect = document.getElementById('fileSelect');
+  fileSelect.click();
+  fileSelect.onchange = () => {
+    const files = Array.from(fileSelect.files);
+    print('Uploading ' + files.length + ' file(s)');
+    files.sort((a, b) => a.size - b.size);
+    let i = 0;
+    const uploadNext = () => {
+      const file = files[i];
+      uploadFile(file, () => {
+        print(`name: ${file.name}, size: ${file.size} done`);
+        i++;
+        if (i < files.length) {
+          return uploadNext();
+        }
+        document.body.removeChild(element);
+        commandLoop();
+      });
+    };
+    uploadNext();
+  };
+};
+
 const exec = async line => {
   const args = line.split(' ');
-  const cmd = args.shift();
-  const data = await api[cmd](args);
-  print(data);
+  if (args[0] === 'upload') {
+    upload();
+  } else {
+    const data = await api.cms.content(args);
+    print(data);
+  }
   commandLoop();
 };
 
@@ -245,12 +295,14 @@ function commandLoop() {
 
 const signIn = async () => {
   try {
-    await metacom.load('status', 'signIn', 'introspection');
-    await api.status();
+    await metacom.load('auth');
+    await api.auth.status();
   } catch (err) {
-    await api.signIn({ login: 'marcus', password: 'marcus' });
+    await api.auth.signIn({ login: 'marcus', password: 'marcus' });
   }
   await metacom.load('example');
+  api.example.on('resmon', data => print(JSON.stringify(data)));
+  api.example.subscribe();
 };
 
 window.addEventListener('load', () => {
