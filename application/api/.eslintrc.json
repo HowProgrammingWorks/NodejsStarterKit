@@ -1,0 +1,11 @@
+{
+  "globals": {
+    "application": "readonly",
+    "config": "readonly",
+    "context": "readonly",
+    "node": "readonly",
+    "npm": "readonly",
+    "lib": "readonly",
+    "domain": "readonly"
+  }
+}

@@ -7,7 +7,10 @@
   },
   "globals": {
     "application": "readonly",
-    "context": "readonly",
-    "api": "readonly"
+    "config": "readonly",
+    "node": "readonly",
+    "npm": "readonly",
+    "lib": "readonly",
+    "domain": "readonly"
   }
 }
