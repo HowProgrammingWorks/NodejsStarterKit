@@ -7,8 +7,9 @@ const { Worker } = require('worker_threads');
 const worker = new Worker('./lib/worker.js');
 
 const HOST = '127.0.0.1';
-const PORT = 8000;
-const START_TIMEOUT = 1000;
+const PORT = 8001;
+const START_DELAY = 500;
+const TEST_DELAY = 1000;
 const TEST_TIMEOUT = 3000;
 
 let callId = 0;
@@ -66,7 +67,7 @@ setTimeout(() => {
       const expectedStatus = task.status || 200;
       setTimeout(() => {
         assert.equal(res.statusCode, expectedStatus);
-      }, TEST_TIMEOUT);
+      }, TEST_DELAY);
     });
     req.on('error', err => {
       console.log(err.stack);
@@ -74,4 +75,4 @@ setTimeout(() => {
     if (task.data) req.write(task.data);
     req.end();
   });
-}, START_TIMEOUT);
+}, START_DELAY);
