@@ -8,11 +8,11 @@ const Config = require('../lib/config.js');
 assert(Config);
 
 const PATH = process.cwd();
-const configPath = path.join(PATH, 'config');
+const configPath = path.join(PATH, 'application/config');
 
 (async () => {
   const config = await new Config(configPath);
-  assert(config.sections);
-  assert(config.sections.database);
-  assert(config.sections.server);
+  assert(config);
+  assert(config.database);
+  assert(config.server);
 })();

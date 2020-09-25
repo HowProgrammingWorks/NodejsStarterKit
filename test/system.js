@@ -28,7 +28,7 @@ const tasks = [
   { get: '/console.js' },
   {
     post: '/api',
-    method: 'signIn',
+    method: 'auth/signIn',
     args: { login: 'marcus', password: 'marcus' }
   }
 ];
@@ -48,6 +48,7 @@ const getRequest = task => {
   }
   if (task.args) {
     const packet = { call: ++callId, [task.method]: task.args };
+    console.log({ packet });
     task.data = JSON.stringify(packet);
     request.headers = {
       'Content-Type': 'application/json',
