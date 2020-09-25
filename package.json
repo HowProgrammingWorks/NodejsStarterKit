@@ -33,7 +33,7 @@
   "scripts": {
     "test": "npm run -s lint && node test/all.js",
     "lint": "eslint .",
-    "install": "cert/generate.sh"
+    "install": "application/cert/generate.sh"
   },
   "repository": {
     "type": "git",
