@@ -7,7 +7,7 @@ const assert = require('assert').strict;
 
 const HOST = '127.0.0.1';
 const PORT = 8001;
-const START_DELAY = 1000;
+const START_DELAY = 2000;
 const TEST_DELAY = 100;
 const TEST_TIMEOUT = 3000;
 
