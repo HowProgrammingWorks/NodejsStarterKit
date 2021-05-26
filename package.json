@@ -47,7 +47,7 @@
     "node": ">=12.9.0"
   },
   "devDependencies": {
-    "eslint": "^7.13.0"
+    "eslint": "^7.27.0"
   },
   "dependencies": {
     "pg": "^8.5.1",
