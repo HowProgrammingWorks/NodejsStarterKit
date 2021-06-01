@@ -7,5 +7,5 @@
     if (!user || !valid) throw new Error('Incorrect login or password');
     console.log(`Logged user: ${login}`);
     return { result: 'success', userId: user.id };
-  }
+  },
 });

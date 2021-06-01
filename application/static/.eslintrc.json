@@ -3,8 +3,6 @@
     "sourceType": "module"
   },
   "rules": {
-    "id-denylist": [
-      0
-    ]
+    "id-denylist": [0]
   }
 }

@@ -1,4 +1,4 @@
-(async () => {
+async () => {
   if (config.resmon.active) {
     setInterval(() => {
       const stats = lib.resmon.getStatistics();
@@ -10,4 +10,4 @@
       console.debug(`Contexts: ${contexts}, detached: ${detached}`);
     }, config.resmon.interval);
   }
-});
+};

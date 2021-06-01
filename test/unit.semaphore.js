@@ -4,11 +4,12 @@ const assert = require('assert').strict;
 
 const Semaphore = require('../lib/semaphore.js');
 
-const sleep = msec => new Promise(resolve => {
-  setTimeout(() => {
-    resolve();
-  }, msec);
-});
+const sleep = (msec) =>
+  new Promise((resolve) => {
+    setTimeout(() => {
+      resolve();
+    }, msec);
+  });
 
 assert(Semaphore);
 const semaphore = new Semaphore(2, 10, 1000);
