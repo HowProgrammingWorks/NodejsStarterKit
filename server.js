@@ -17,10 +17,10 @@ const options = { trackUnmanagedFds: true };
   let active = count;
   const threads = new Array(count);
 
-  const start = id => {
+  const start = (id) => {
     const worker = new Worker('./lib/worker.js', options);
     threads[id] = worker;
-    worker.on('exit', code => {
+    worker.on('exit', (code) => {
       if (code !== 0) start(id);
       else if (--active === 0) process.exit(0);
     });

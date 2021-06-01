@@ -1,4 +1,4 @@
 ({
   access: 'public',
-  method: application.introspect
+  method: application.introspect,
 });

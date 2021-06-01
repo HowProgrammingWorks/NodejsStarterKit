@@ -25,15 +25,15 @@ const tasks = [
   {
     post: '/api',
     method: 'auth/signIn',
-    args: { login: 'marcus', password: 'marcus' }
-  }
+    args: { login: 'marcus', password: 'marcus' },
+  },
 ];
 
-const getRequest = task => {
+const getRequest = (task) => {
   const request = {
     host: HOST,
     port: task.port || PORT,
-    agent: false
+    agent: false,
   };
   if (task.get) {
     request.method = 'GET';
@@ -47,25 +47,25 @@ const getRequest = task => {
     task.data = JSON.stringify(packet);
     request.headers = {
       'Content-Type': 'application/json',
-      'Content-Length': task.data.length
+      'Content-Length': task.data.length,
     };
   }
   return request;
 };
 
 setTimeout(() => {
-  tasks.forEach(task => {
+  tasks.forEach((task) => {
     const name = task.get || task.post;
     console.log('HTTP request ' + name);
     const request = getRequest(task);
     const req = http.request(request);
-    req.on('response', res => {
+    req.on('response', (res) => {
       const expectedStatus = task.status || 200;
       setTimeout(() => {
         assert.equal(res.statusCode, expectedStatus);
       }, TEST_DELAY);
     });
-    req.on('error', err => {
+    req.on('error', (err) => {
       console.log(err.stack);
     });
     if (task.data) req.write(task.data);

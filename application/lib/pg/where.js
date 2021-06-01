@@ -1,4 +1,4 @@
-((conditions, firstArgIndex = 1) => {
+(conditions, firstArgIndex = 1) => {
   const clause = [];
   const args = [];
   let i = firstArgIndex;
@@ -23,4 +23,4 @@
     args.push(value);
   }
   return { clause: clause.join(' AND '), args };
-});
+};

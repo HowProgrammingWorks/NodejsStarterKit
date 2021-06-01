@@ -24,5 +24,5 @@ async () => [
   'programming including C, C++, JavaScript, Rust, Go, Swift, Java,',
   'Objective-C, Kotlin, C#, Delphi, Assembler, Python, Haskell, etc.',
   'We provide solutions for Unix/Linux, Windows, OSX, Android, Internet',
-  'solutions and Embedded systems.'
+  'solutions and Embedded systems.',
 ];

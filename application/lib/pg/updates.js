@@ -1,4 +1,4 @@
-((delta, firstArgIndex = 1) => {
+(delta, firstArgIndex = 1) => {
   const clause = [];
   const args = [];
   let i = firstArgIndex;
@@ -9,4 +9,4 @@
     args.push(value);
   }
   return { clause: clause.join(', '), args };
-});
+};
