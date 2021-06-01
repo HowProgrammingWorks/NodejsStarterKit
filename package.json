@@ -32,7 +32,7 @@
   "main": "server.js",
   "scripts": {
     "test": "npm run -s lint && node test/all.js",
-    "lint": "eslint .",
+    "lint": "eslint . --fix && prettier --write \"**/*.js\" \"**/*.json\"",
     "install": "application/cert/generate.sh"
   },
   "repository": {
@@ -47,7 +47,8 @@
     "node": ">=12.9.0"
   },
   "devDependencies": {
-    "eslint": "^7.27.0"
+    "eslint": "^7.27.0",
+    "prettier": "^2.3.0"
   },
   "dependencies": {
     "pg": "^8.6.0",
