@@ -44,14 +44,14 @@
   },
   "homepage": "https://github.com/HowProgrammingWorks/NodejsStarterKit",
   "engines": {
-    "node": ">=12.9.0"
+    "node": "16 || 18"
   },
   "devDependencies": {
-    "eslint": "^7.27.0",
-    "prettier": "^2.3.0"
+    "eslint": "^8.23.0",
+    "prettier": "^2.7.1"
   },
   "dependencies": {
-    "pg": "^8.6.0",
-    "ws": "^7.4.6"
+    "pg": "^8.8.0",
+    "ws": "^8.8.1"
   }
 }
