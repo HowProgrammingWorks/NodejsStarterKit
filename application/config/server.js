@@ -9,8 +9,4 @@
     size: 2000,
     timeout: 3000,
   },
-  workers: {
-    pool: 2,
-    timeout: 3000,
-  },
 });
