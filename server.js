@@ -1,40 +1,61 @@
 'use strict';
 
-const { Worker } = require('worker_threads');
-const path = require('path');
-
+const { node } = require('./lib/dependencies.js');
+const { fsp, path } = node;
+const application = require('./lib/application.js');
 const Config = require('./lib/config.js');
+const Logger = require('./lib/logger.js');
+const Database = require('./lib/database.js');
+const Server = require('./lib/server.js');
+const Channel = require('./lib/channel.js');
+const initAuth = require('./lib/auth.js');
 
-const PATH = process.cwd();
-const CFG_PATH = path.join(PATH, 'application/config');
+const loadCert = async (certPath) => {
+  const key = await fsp.readFile(path.join(certPath, 'key.pem'));
+  const cert = await fsp.readFile(path.join(certPath, 'cert.pem'));
+  return { key, cert };
+};
 
-const options = { trackUnmanagedFds: true };
+const main = async () => {
+  const configPath = path.join(application.path, 'config');
+  const config = await new Config(configPath);
+  const logPath = path.join(application.root, 'log');
+  const logger = await new Logger(logPath);
+  Object.assign(application, { config, logger });
 
-(async () => {
-  const config = await new Config(CFG_PATH);
-  const { balancer, ports = [], workers = {} } = config.server;
-  const count = ports.length + (balancer ? 1 : 0) + (workers.pool || 0);
-  let active = count;
-  const threads = new Array(count);
-
-  const start = (id) => {
-    const worker = new Worker('./lib/worker.js', options);
-    threads[id] = worker;
-    worker.on('exit', (code) => {
-      if (code !== 0) start(id);
-      else if (--active === 0) process.exit(0);
-    });
+  const logError = (err) => {
+    logger.error(err ? err.stack : 'No exception stack available');
   };
 
-  for (let id = 0; id < count; id++) start(id);
+  process.on('uncaughtException', logError);
+  process.on('warning', logError);
+  process.on('unhandledRejection', logError);
 
-  const stop = async () => {
-    console.log();
-    for (const worker of threads) {
-      worker.postMessage({ name: 'stop' });
-    }
+  const certPath = path.join(application.path, 'cert');
+  const cert = await loadCert(certPath).catch(() => {
+    logError(new Error('Can not load TLS certificates'));
+  });
+
+  application.db = new Database(config.database);
+  application.auth = initAuth();
+  application.sandboxInject('auth', application.auth);
+
+  const { ports } = config.server;
+  const options = { cert, application, Channel };
+  for (const port of ports) {
+    application.server = new Server(config.server, options);
+    logger.system(`Listen port ${port}`);
+  }
+
+  await application.init();
+  logger.system('Application started');
+
+  const stop = () => {
+    process.exit(0);
   };
 
   process.on('SIGINT', stop);
   process.on('SIGTERM', stop);
-})();
+};
+
+main();
