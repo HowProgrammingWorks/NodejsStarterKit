@@ -54,5 +54,5 @@ Ask questions at https://t.me/nodeua and post issues on
 
 ## License
 
-Copyright (c) 2020-2022 How.Programming.Works contributors.
+Copyright (c) 2020-2023 How.Programming.Works contributors.
 This starter kit is [MIT licensed](./LICENSE).
