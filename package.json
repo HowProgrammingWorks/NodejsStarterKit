@@ -47,11 +47,11 @@
     "node": "16 || 18 || 19"
   },
   "devDependencies": {
-    "eslint": "^8.23.0",
-    "prettier": "^2.7.1"
+    "eslint": "^8.34.0",
+    "prettier": "^2.8.4"
   },
   "dependencies": {
-    "pg": "^8.8.0",
-    "ws": "^8.8.1"
+    "pg": "^8.9.0",
+    "ws": "^8.12.0"
   }
 }
